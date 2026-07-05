@@ -1,0 +1,4723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C Programming — 152 Solid Programs - From Zero To Hero | Future Minds MAKAUT</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --card: #161d2e;
+    --border: #1f2d45;
+    --accent: #00d4ff;
+    --accent-hover: rgba(0, 212, 255, 0.1);
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --light: #94a3b8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0a0e1a 0%, #0f1729 40%, #0d1f3c 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 50px 24px 40px;
+    text-align: center;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.3);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(26px, 5vw, 36px);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  header p {
+    color: var(--light);
+    font-size: 15px;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* UNIT HEADER */
+  .unit-header {
+    margin: 48px 0 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(136, 243, 136);
+  }
+
+  /* DROPDOWN (DETAILS/SUMMARY) */
+  details.problem {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  details.problem:hover {
+    border-color: rgba(0,212,255,0.3);
+  }
+  
+  summary {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none; /* Hide default arrow */
+    background: var(--surface);
+  }
+  summary::-webkit-details-marker {
+    display: none; /* Hide Safari arrow */
+  }
+  summary:hover {
+    background: var(--accent-hover);
+  }
+
+  .pnum {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(0, 212, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-right: 16px;
+    min-width: 48px;
+    text-align: center;
+  }
+  .ptitle {
+    flex: 1;
+    font-weight: 500;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  .pdate {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0 16px;
+  }
+  .chevron {
+    color: var(--muted);
+    font-size: 12px;
+    transition: transform 0.2s;
+  }
+  details[open] summary .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ANSWER CONTENT */
+  .ans-content {
+    padding: 16px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    color: var(--light);
+    font-size: 14px;
+  }
+  
+  .ans-content pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: #0d1424;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    color: #a5f3fc;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+  .note-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .pdate { display: none; }
+  }
+</style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+<body>
+
+<header class="sticky top-0 z-50">
+  <div class="badge">Future Minds · MAKAUT Community</div>
+  <h1 >C Programming: Complete 152 Programs List</h1>
+  <p class="!text-lg !text-gray-300 !mt-4 !font-medium">Semester II · ES-CS291 </p>
+  <a href="https://whatsapp.com/channel/0029VaS4HVs2phHPbvb7OM1Z" class="text-blue-300">JOIN THE COMMUNITY OF 32K+ STUDENTS : https://whatsapp.com/channel/0029VaS4HVs2phHPbvb7OM1Z</a>
+</header>
+
+<main>
+
+  <div class="unit-header ">Unit 1: Basics, Operators & Control Flow (Programs 1–41)</div>
+
+  <details class="problem"><summary><div class="pnum">#01</div><div class="ptitle">Addition</div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">Standard arithmetic addition program. <br><div class="note-badge">C Program</div>
+    <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, sum;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+    
+    sum = a + b;
+    
+    printf("Sum = %d\n", sum);
+    
+    return 0;
+}</code></pre> </div></details>
+  <details class="problem"><summary><div class="pnum">#02</div><div class="ptitle">Subtraction </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">Standard arithmetic subtraction program. <br> <div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, diff;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+    
+    diff = a - b;
+    
+    printf("Difference = %d\n", diff);
+    
+    return 0;
+}</code></pre>
+</div></div></details>
+  <details class="problem"><summary><div class="pnum">#03</div><div class="ptitle">Multiplication</div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">Standard arithmetic multiplication program. <br> <div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, prod;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+    
+    prod = a * b;
+    
+    printf("Product = %d\n", prod);
+    
+    return 0;
+}</code></pre>
+</div></div></details>
+  <details class="problem"><summary><div class="pnum">#04</div><div class="ptitle">Division </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">Standard arithmetic division program. <br><div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    float a, b, div;
+    
+    printf("Enter two numbers: ");
+    scanf("%f %f", &amp;a, &amp;b);
+    
+    if (b != 0) {
+        div = a / b;
+        printf("Quotient = %.2f\n", div);
+    } else {
+        printf("Error: Division by zero is not allowed.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></div></details>
+  <details class="problem"><summary><div class="pnum">#05</div><div class="ptitle">All Mathematical Operations (consisting of 1-5)</div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">Combined operations program. <br> <div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+    
+    printf("Addition: %d + %d = %d\n", a, b, a + b);
+    printf("Subtraction: %d - %d = %d\n", a, b, a - b);
+    printf("Multiplication: %d * %d = %d\n", a, b, a * b);
+    
+    if (b != 0) {
+        printf("Division: %d / %d = %.2f\n", a, b, (float)a / b);
+    } else {
+        printf("Division: Cannot divide by zero\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></div></details>
+  <details class="problem"><summary><div class="pnum">#06</div><div class="ptitle">Swap 2 numbers with variable</div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content"><pre><code>int temp = a; a = b; b = temp;</code></pre> <br> <div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, temp;
+    
+    printf("Enter a and b: ");
+    scanf("%d %d", &amp;a, &amp;b);
+    
+    printf("Before swap: a = %d, b = %d\n", a, b);
+    
+    temp = a;
+    a = b;
+    b = temp;
+    
+    printf("After swap: a = %d, b = %d\n", a, b);
+    
+    return 0;
+}</code></pre>
+</div></div></details>
+  <details class="problem"><summary><div class="pnum">#07</div><div class="ptitle">Swap 2 numbers without variable </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content"><pre><code>a = a + b; b = a - b; a = a - b;</code></pre> <br> <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+    
+    printf("Before swap: a = %d, b = %d\n", a, b);
+    
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    
+    printf("After swap: a = %d, b = %d\n", a, b);
+    
+    return 0;
+}</code></pre></div></details>
+  <details class="problem"><summary><div class="pnum">#08</div><div class="ptitle">Farenheit to Celcius </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content"><pre><code>C = (F - 32) * 5.0 / 9.0;</code></pre> <br><div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    float f, c;
+    
+    printf("Enter temperature in Fahrenheit: ");
+    scanf("%f", &amp;f);
+    
+    c = (f - 32) * 5.0 / 9.0;
+    
+    printf("Temperature in Celsius = %.2f\n", c);
+    
+    return 0;
+}</code></pre>
+</div></div></details>
+  <details class="problem"><summary><div class="pnum">#09</div><div class="ptitle">Reverse 5 digit number without loop </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content"><pre><code>rev = (n%10)*10000 + (n/10%10)*1000 + (n/100%10)*100 + (n/1000%10)*10 + (n/10000);</code></pre> <br><div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, rev;
+    
+    printf("Enter a 5-digit number: ");
+    scanf("%d", &amp;n);
+    
+    rev = (n % 10) * 10000 + 
+          (n / 10 % 10) * 1000 + 
+          (n / 100 % 10) * 100 + 
+          (n / 1000 % 10) * 10 + 
+          (n / 10000);
+          
+    printf("Reversed number = %d\n", rev);
+    
+    return 0;
+}</code></pre>
+</div></div></details>
+  <details class="problem"><summary><div class="pnum">#10</div><div class="ptitle">Max and Min of 2 numbers </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">Use basic if-else logic. <br> <div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+    
+    if (a &gt; b) {
+        printf("Max is %d, Min is %d\n", a, b);
+    } else if (b &gt; a) {
+        printf("Max is %d, Min is %d\n", b, a);
+    } else {
+        printf("Both numbers are equal (%d)\n", a);
+    }
+    
+    return 0;
+}</code></pre>
+</div></div></details>
+  <details class="problem"><summary><div class="pnum">#11</div><div class="ptitle">Max of 3 numbers </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">Use nested if-else or logical AND operators. <br> <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, c;
+    
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &amp;a, &amp;b, &amp;c);
+    
+    if (a &gt;= b &amp;&amp; a &gt;= c) {
+        printf("Max is %d\n", a);
+    } else if (b &gt;= a &amp;&amp; b &gt;= c) {
+        printf("Max is %d\n", b);
+    } else {
+        printf("Max is %d\n", c);
+    }
+    
+    return 0;
+}</code></pre></div></details>
+  <details class="problem"><summary><div class="pnum">#12</div><div class="ptitle">If number is +ve, -ve or 0 </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">Simple relational checking against zero. <br><pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n;
+    
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+    
+    if (n &gt; 0) {
+        printf("%d is Positive\n", n);
+    } else if (n &lt; 0) {
+        printf("%d is Negative\n", n);
+    } else {
+        printf("The number is Zero\n");
+    }
+    
+    return 0;
+}</code></pre> </div></details>
+  <details class="problem"><summary><div class="pnum">#13</div><div class="ptitle">If number is divisible by 5 AND 11 </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content"><pre><code>if (n % 5 == 0 && n % 11 == 0)</code></pre> <br><pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n;
+    
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+    
+    if (n % 5 == 0 &amp;&amp; n % 11 == 0) {
+        printf("%d is divisible by 5 and 11\n", n);
+    } else {
+        printf("%d is not divisible by 5 and 11\n", n);
+    }
+    
+    return 0;
+}</code></pre></div></details>
+  <details class="problem"><summary><div class="pnum">#14</div><div class="ptitle">If number is even or odd </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content"><pre><code>if (n % 2 == 0)</code></pre> <br> <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n;
+    
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+    
+    if (n % 2 == 0) {
+        printf("%d is Even\n", n);
+    } else {
+        printf("%d is Odd\n", n);
+    }
+    
+    return 0;
+}</code></pre></div></details>
+  <details class="problem"><summary><div class="pnum">#15</div><div class="ptitle">Check if leap year or not </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content"><pre><code>if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)</code></pre> <br><pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int year;
+    
+    printf("Enter a year: ");
+    scanf("%d", &amp;year);
+    
+    if ((year % 4 == 0 &amp;&amp; year % 100 != 0) || (year % 400 == 0)) {
+        printf("%d is a Leap Year\n", year);
+    } else {
+        printf("%d is not a Leap Year\n", year);
+    }
+    
+    return 0;
+}</code></pre></div></details>
+  <details class="problem"><summary><div class="pnum">#16</div><div class="ptitle">Check if alphabet or not </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content"><pre><code>if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))</code></pre> <br><pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char c;
+    
+    printf("Enter a character: ");
+    scanf(" %c", &amp;c);
+    
+    if ((c &gt;= 'a' &amp;&amp; c &lt;= 'z') || (c &gt;= 'A' &amp;&amp; c &lt;= 'Z')) {
+        printf("'%c' is an Alphabet\n", c);
+    } else {
+        printf("'%c' is not an Alphabet\n", c);
+    }
+    
+    return 0;
+}</code></pre></div></details>
+  <details class="problem"><summary><div class="pnum">#17</div><div class="ptitle">Check is vowel or consonant - IFELSE </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">Check if char is a, e, i, o, u (both cases). <br><pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char c;
+    int isLowercaseVowel, isUppercaseVowel;
+    
+    printf("Enter an alphabet: ");
+    scanf(" %c", &amp;c);
+    
+    isLowercaseVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+    isUppercaseVowel = (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U');
+    
+    if (isLowercaseVowel || isUppercaseVowel) {
+        printf("'%c' is a Vowel\n", c);
+    } else {
+        printf("'%c' is a Consonant\n", c);
+    }
+    
+    return 0;
+}</code></pre></div></details>
+  <details class="problem"><summary><div class="pnum">#18</div><div class="ptitle">Check is alphabet, digit or special character </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content"><pre><code>Combine alphabet check with digit check (c >= '0' && c <= '9'). </code><pre></pre></code><br><pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char c;
+    
+    printf("Enter any character: ");
+    scanf(" %c", &amp;c);
+    
+    if ((c &gt;= 'a' &amp;&amp; c &lt;= 'z') || (c &gt;= 'A' &amp;&amp; c &lt;= 'Z')) {
+        printf("'%c' is an Alphabet\n", c);
+    } else if (c &gt;= '0' &amp;&amp; c &lt;= '9') {
+        printf("'%c' is a Digit\n", c);
+    } else {
+        printf("'%c' is a Special Character\n", c);
+    }
+    
+    return 0;
+}</code></pre> </div></details>
+  <details class="problem"><summary><div class="pnum">#19</div><div class="ptitle">Check if character is uppercase or lowercase </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Check ASCII ranges.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char c;
+    
+    printf("Enter an alphabet: ");
+    scanf(" %c", &amp;c);
+    
+    if (c &gt;= 'A' &amp;&amp; c &lt;= 'Z') {
+        printf("'%c' is Uppercase\n", c);
+    } else if (c &gt;= 'a' &amp;&amp; c &lt;= 'z') {
+        printf("'%c' is Lowercase\n", c);
+    } else {
+        printf("'%c' is not an alphabet\n", c);
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#20</div><div class="ptitle">Input week-day number and print week-day name - IFELSE </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Chain of if-else statements (1=Monday, etc).</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int day;
+    
+    printf("Enter weekday number (1-7): ");
+    scanf("%d", &amp;day);
+    
+    if (day == 1) {
+        printf("Monday\n");
+    } else if (day == 2) {
+        printf("Tuesday\n");
+    } else if (day == 3) {
+        printf("Wednesday\n");
+    } else if (day == 4) {
+        printf("Thursday\n");
+    } else if (day == 5) {
+        printf("Friday\n");
+    } else if (day == 6) {
+        printf("Saturday\n");
+    } else if (day == 7) {
+        printf("Sunday\n");
+    } else {
+        printf("Invalid input! Please enter a number between 1 and 7.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#21</div><div class="ptitle">Total number of different notes in a given amount </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Divide amount by 2000, 500, 100, etc., and take remainders.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int amount;
+    
+    printf("Enter amount: ");
+    scanf("%d", &amp;amount);
+    
+    int notes[] = {2000, 500, 200, 100, 50, 20, 10, 5, 2, 1};
+    int count = 0;
+    
+    printf("Notes breakdown:\n");
+    for (int i = 0; i &lt; 10; i++) {
+        if (amount &gt;= notes[i]) {
+            count = amount / notes[i];
+            printf("%d Rs notes : %d\n", notes[i], count);
+            amount = amount % notes[i];
+        }
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#22</div><div class="ptitle">Check angles and verify if triangle is valid </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>if (a + b + c == 180)</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, c, sum;
+    
+    printf("Enter three angles of triangle: ");
+    scanf("%d %d %d", &amp;a, &amp;b, &amp;c);
+    
+    sum = a + b + c;
+    
+    if (sum == 180 &amp;&amp; a &gt; 0 &amp;&amp; b &gt; 0 &amp;&amp; c &gt; 0) {
+        printf("The triangle is valid.\n");
+    } else {
+        printf("The triangle is not valid.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#23</div><div class="ptitle">Check if triangle is equilateral or isosceles </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Equilateral: a==b &amp;&amp; b==c. Isosceles: a==b || b==c || a==c.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, c;
+    
+    printf("Enter three sides of triangle: ");
+    scanf("%d %d %d", &amp;a, &amp;b, &amp;c);
+    
+    if (a == b &amp;&amp; b == c) {
+        printf("Triangle is Equilateral.\n");
+    } else if (a == b || b == c || a == c) {
+        printf("Triangle is Isosceles.\n");
+    } else {
+        printf("Triangle is Scalene.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#24</div><div class="ptitle">Find roots of quadratic equation </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Calculate discriminant (b*b - 4*a*c).</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    float a, b, c, discriminant, root1, root2;
+    
+    printf("Enter coefficients a, b and c: ");
+    scanf("%f %f %f", &amp;a, &amp;b, &amp;c);
+    
+    discriminant = b * b - 4 * a * c;
+    
+    if (discriminant &gt; 0) {
+        root1 = (-b + sqrt(discriminant)) / (2 * a);
+        root2 = (-b - sqrt(discriminant)) / (2 * a);
+        printf("Roots are real and distinct: %.2f and %.2f\n", root1, root2);
+    } else if (discriminant == 0) {
+        root1 = root2 = -b / (2 * a);
+        printf("Roots are real and equal: %.2f and %.2f\n", root1, root2);
+    } else {
+        float realPart = -b / (2 * a);
+        float imagPart = sqrt(-discriminant) / (2 * a);
+        printf("Roots are complex: %.2f+%.2fi and %.2f-%.2fi\n", realPart, imagPart, realPart, imagPart);
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#25</div><div class="ptitle">Find gross salary given basic salary </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Salary &lt;= 10K, HRA 10%, DA=15%; Salary &lt;= 20K, HRA=15%, DA=20%; Salary &gt; 20K, HRA 20%, DA=30%;</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    float basic, hra, da, gross;
+    
+    printf("Enter basic salary: ");
+    scanf("%f", &amp;basic);
+    
+    if (basic &lt;= 10000) {
+        hra = basic * 0.10;
+        da = basic * 0.15;
+    } else if (basic &lt;= 20000) {
+        hra = basic * 0.15;
+        da = basic * 0.20;
+    } else {
+        hra = basic * 0.20;
+        da = basic * 0.30;
+    }
+    
+    gross = basic + hra + da;
+    printf("Gross Salary = %.2f\n", gross);
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#26</div><div class="ptitle">Input marks and print grade as per MAKAUT regulations </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>100-90 = O; 80-89 = E; 70-79 = A; 60-69 = B; 50-59 = C; 40-49 = D; &lt;40 = F</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int marks;
+    
+    printf("Enter marks: ");
+    scanf("%d", &amp;marks);
+    
+    if (marks &gt;= 90 &amp;&amp; marks &lt;= 100) {
+        printf("Grade: O\n");
+    } else if (marks &gt;= 80 &amp;&amp; marks &lt;= 89) {
+        printf("Grade: E\n");
+    } else if (marks &gt;= 70 &amp;&amp; marks &lt;= 79) {
+        printf("Grade: A\n");
+    } else if (marks &gt;= 60 &amp;&amp; marks &lt;= 69) {
+        printf("Grade: B\n");
+    } else if (marks &gt;= 50 &amp;&amp; marks &lt;= 59) {
+        printf("Grade: C\n");
+    } else if (marks &gt;= 40 &amp;&amp; marks &lt;= 49) {
+        printf("Grade: D\n");
+    } else if (marks &lt; 40 &amp;&amp; marks &gt;= 0) {
+        printf("Grade: F\n");
+    } else {
+        printf("Invalid marks entered.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#27</div><div class="ptitle">Take symbol from user and perform operation (basic calculator) - IFELSE </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Chain if-else against '+', '-', '*', '/'.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char op;
+    float num1, num2;
+    
+    printf("Enter operator (+, -, *, /): ");
+    scanf(" %c", &amp;op);
+    
+    printf("Enter two numbers: ");
+    scanf("%f %f", &amp;num1, &amp;num2);
+    
+    if (op == '+') {
+        printf("%.2f + %.2f = %.2f\n", num1, num2, num1 + num2);
+    } else if (op == '-') {
+        printf("%.2f - %.2f = %.2f\n", num1, num2, num1 - num2);
+    } else if (op == '*') {
+        printf("%.2f * %.2f = %.2f\n", num1, num2, num1 * num2);
+    } else if (op == '/') {
+        if (num2 != 0)
+            printf("%.2f / %.2f = %.2f\n", num1, num2, num1 / num2);
+        else
+            printf("Error: Division by zero\n");
+    } else {
+        printf("Invalid operator\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#28</div><div class="ptitle">Take symbol from user and perform operation (basic calculator) - SWITCH </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Use switch(char).</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char op;
+    float num1, num2;
+    
+    printf("Enter operator (+, -, *, /): ");
+    scanf(" %c", &amp;op);
+    
+    printf("Enter two numbers: ");
+    scanf("%f %f", &amp;num1, &amp;num2);
+    
+    switch(op) {
+        case '+':
+            printf("%.2f + %.2f = %.2f\n", num1, num2, num1 + num2);
+            break;
+        case '-':
+            printf("%.2f - %.2f = %.2f\n", num1, num2, num1 - num2);
+            break;
+        case '*':
+            printf("%.2f * %.2f = %.2f\n", num1, num2, num1 * num2);
+            break;
+        case '/':
+            if (num2 != 0)
+                printf("%.2f / %.2f = %.2f\n", num1, num2, num1 / num2);
+            else
+                printf("Error: Division by zero\n");
+            break;
+        default:
+            printf("Invalid operator\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#29</div><div class="ptitle">Check whether vowel or consonant - SWITCH </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+ <div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Cases for 'a','e','i','o','u'.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char c;
+    
+    printf("Enter an alphabet: ");
+    scanf(" %c", &amp;c);
+    
+    switch(c) {
+        case 'a': case 'e': case 'i': case 'o': case 'u':
+        case 'A': case 'E': case 'I': case 'O': case 'U':
+            printf("'%c' is a Vowel\n", c);
+            break;
+        default:
+            if ((c &gt;= 'a' &amp;&amp; c &lt;= 'z') || (c &gt;= 'A' &amp;&amp; c &lt;= 'Z'))
+                printf("'%c' is a Consonant\n", c);
+            else
+                printf("'%c' is not an alphabet\n", c);
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#30</div><div class="ptitle">Input week-day number and print week-day name - SWITCH </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Cases 1 to 7.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int day;
+    
+    printf("Enter weekday number (1-7): ");
+    scanf("%d", &amp;day);
+    
+    switch(day) {
+        case 1: printf("Monday\n"); break;
+        case 2: printf("Tuesday\n"); break;
+        case 3: printf("Wednesday\n"); break;
+        case 4: printf("Thursday\n"); break;
+        case 5: printf("Friday\n"); break;
+        case 6: printf("Saturday\n"); break;
+        case 7: printf("Sunday\n"); break;
+        default: printf("Invalid input! Please enter a number between 1 and 7.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#31</div><div class="ptitle">Input M or F and print Male of Female - IFELSE </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>if (c == 'M') ... else if (c == 'F') ...</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char gender;
+    
+    printf("Enter gender (M/F): ");
+    scanf(" %c", &amp;gender);
+    
+    if (gender == 'M' || gender == 'm') {
+        printf("Male\n");
+    } else if (gender == 'F' || gender == 'f') {
+        printf("Female\n");
+    } else {
+        printf("Invalid input\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#32</div><div class="ptitle">Input M or F and print Male of Female - SWITCH </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>switch(c) { case 'M': ... case 'F': ... }</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char gender;
+    
+    printf("Enter gender (M/F): ");
+    scanf(" %c", &amp;gender);
+    
+    switch(gender) {
+        case 'M': case 'm':
+            printf("Male\n");
+            break;
+        case 'F': case 'f':
+            printf("Female\n");
+            break;
+        default:
+            printf("Invalid input\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#33</div><div class="ptitle">Input month and print number of days - IFELSE </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Handle leap year logic for February.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int month, year;
+    
+    printf("Enter month (1-12): ");
+    scanf("%d", &amp;month);
+    
+    if (month == 1 || month == 3 || month == 5 || month == 7 || 
+        month == 8 || month == 10 || month == 12) {
+        printf("31 Days\n");
+    } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+        printf("30 Days\n");
+    } else if (month == 2) {
+        printf("Enter year to check leap year: ");
+        scanf("%d", &amp;year);
+        if ((year % 4 == 0 &amp;&amp; year % 100 != 0) || (year % 400 == 0)) {
+            printf("29 Days (Leap Year)\n");
+        } else {
+            printf("28 Days\n");
+        }
+    } else {
+        printf("Invalid month!\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#34</div><div class="ptitle">Input month and print number of days - SWITCH </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Group cases (e.g., case 1: case 3: case 5... print 31).</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int month, year;
+    
+    printf("Enter month (1-12): ");
+    scanf("%d", &amp;month);
+    
+    switch(month) {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            printf("31 Days\n");
+            break;
+        case 4: case 6: case 9: case 11:
+            printf("30 Days\n");
+            break;
+        case 2:
+            printf("Enter year to check leap year: ");
+            scanf("%d", &amp;year);
+            if ((year % 4 == 0 &amp;&amp; year % 100 != 0) || (year % 400 == 0)) {
+                printf("29 Days (Leap Year)\n");
+            } else {
+                printf("28 Days\n");
+            }
+            break;
+        default:
+            printf("Invalid month!\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#35</div><div class="ptitle">Electricity bill - IFELSE </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+ <div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>&lt;= 50 units - 50 paise/unit; &gt;50 and &lt;= 150 - 70p/u; &gt;150 and &lt;= 250 - 1.2rs/u; &gt;250 and &lt;= 350 - 1.5rs/u; &gt;350 - 175p/u; NOTE = 20% extra surcharge</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    float units, bill, total_bill;
+    
+    printf("Enter electricity units consumed: ");
+    scanf("%f", &amp;units);
+    
+    if (units &lt;= 50) {
+        bill = units * 0.50;
+    } else if (units &lt;= 150) {
+        bill = (50 * 0.50) + ((units - 50) * 0.70);
+    } else if (units &lt;= 250) {
+        bill = (50 * 0.50) + (100 * 0.70) + ((units - 150) * 1.20);
+    } else if (units &lt;= 350) {
+        bill = (50 * 0.50) + (100 * 0.70) + (100 * 1.20) + ((units - 250) * 1.50);
+    } else {
+        bill = (50 * 0.50) + (100 * 0.70) + (100 * 1.20) + (100 * 1.50) + ((units - 350) * 1.75);
+    }
+    
+    total_bill = bill + (bill * 0.20); // 20% surcharge
+    printf("Total Electricity Bill = Rs. %.2f\n", total_bill);
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#36</div><div class="ptitle">Electricity bill - SWITCH </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+   <div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Switch isn't ideal for ranges, so we create slab identifiers first using if-else.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    float units, bill, total_bill;
+    int slab;
+    
+    printf("Enter electricity units consumed: ");
+    scanf("%f", &amp;units);
+    
+    // Assign slabs since switch requires integers
+    if (units &lt;= 50) slab = 1;
+    else if (units &lt;= 150) slab = 2;
+    else if (units &lt;= 250) slab = 3;
+    else if (units &lt;= 350) slab = 4;
+    else slab = 5;
+    
+    switch(slab) {
+        case 1: 
+            bill = units * 0.50; 
+            break;
+        case 2: 
+            bill = 25 + ((units - 50) * 0.70); 
+            break;
+        case 3: 
+            bill = 95 + ((units - 150) * 1.20); 
+            break;
+        case 4: 
+            bill = 215 + ((units - 250) * 1.50); 
+            break;
+        case 5: 
+            bill = 365 + ((units - 350) * 1.75); 
+            break;
+    }
+    
+    total_bill = bill * 1.20; // adding 20% surcharge
+    printf("Total Electricity Bill = Rs. %.2f\n", total_bill);
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#37</div><div class="ptitle">Print all natural numbers in a range </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Use a while loop.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int start, end;
+    
+    printf("Enter starting number: ");
+    scanf("%d", &amp;start);
+    printf("Enter ending number: ");
+    scanf("%d", &amp;end);
+    
+    int i = start;
+    while (i &lt;= end) {
+        printf("%d ", i);
+        i++;
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#38</div><div class="ptitle">Print factorial of a given number (While Loop)</div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>while(n &gt; 0) { fact *= n; n--; }</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, i = 1;
+    unsigned long long fact = 1; // using larger capacity type for factorials
+    
+    printf("Enter a positive integer: ");
+    scanf("%d", &amp;n);
+    
+    while (i &lt;= n) {
+        fact *= i;
+        i++;
+    }
+    
+    printf("Factorial of %d = %llu\n", n, fact);
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#39</div><div class="ptitle">Print sum of all numbers in a range </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Loop and accumulate sum.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int start, end, sum = 0;
+    
+    printf("Enter starting number: ");
+    scanf("%d", &amp;start);
+    printf("Enter ending number: ");
+    scanf("%d", &amp;end);
+    
+    int i = start;
+    while (i &lt;= end) {
+        sum += i;
+        i++;
+    }
+    
+    printf("Sum of numbers from %d to %d = %d\n", start, end, sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#40</div><div class="ptitle">Find gross salary given basic salary (SWITCH)</div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Salary &lt;= 10K, HRA=10%, DA=15%; Salary &lt;= 20K, HRA=15%, DA= 20%; Salary &gt; 20K, HRA=20%, DA= 30%</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    float basic, hra, da, gross;
+    int category;
+    
+    printf("Enter basic salary: ");
+    scanf("%f", &amp;basic);
+    
+    // Determine category for switch
+    if (basic &lt;= 10000) category = 1;
+    else if (basic &lt;= 20000) category = 2;
+    else category = 3;
+    
+    switch(category) {
+        case 1:
+            hra = basic * 0.10;
+            da = basic * 0.15;
+            break;
+        case 2:
+            hra = basic * 0.15;
+            da = basic * 0.20;
+            break;
+        case 3:
+            hra = basic * 0.20;
+            da = basic * 0.30;
+            break;
+    }
+    
+    gross = basic + hra + da;
+    printf("Gross Salary = %.2f\n", gross);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#41</div><div class="ptitle">Input marks and print grade as per MAKAUT regulations (SWITCH) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>100-90=O; 80-89=E; 70-79=A; 60-69=B; 50-59=C; 40-49=D; &lt;40=F</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int marks;
+    
+    printf("Enter marks (0-100): ");
+    scanf("%d", &amp;marks);
+    
+    // Using division by 10 to group ranges into cases
+    switch(marks / 10) {
+        case 10:
+        case 9:
+            printf("Grade: O\n");
+            break;
+        case 8:
+            printf("Grade: E\n");
+            break;
+        case 7:
+            printf("Grade: A\n");
+            break;
+        case 6:
+            printf("Grade: B\n");
+            break;
+        case 5:
+            printf("Grade: C\n");
+            break;
+        case 4:
+            printf("Grade: D\n");
+            break;
+        case 3: case 2: case 1: case 0:
+            if(marks &gt;= 0)
+                printf("Grade: F\n");
+            else
+                printf("Invalid marks\n");
+            break;
+        default:
+            printf("Invalid marks\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+
+
+  <div class="unit-header">Unit 2: Loops, Series & Number Patterns (Programs 42–83)</div>
+
+  <details class="problem"><summary><div class="pnum">#42</div><div class="ptitle">Write a program to print the numbers 1 to 10 using for loop </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>for(int i=1; i&lt;=10; i++) printf("%d ", i);</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Numbers 1 to 10:\n");
+    
+    for (int i = 1; i &lt;= 10; i++) {
+        printf("%d ", i);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#43</div><div class="ptitle">Factorial of a number using for loop </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>for(int i=1; i&lt;=10; i++) printf("%d ", i);</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Numbers 1 to 10:\n");
+    
+    for (int i = 1; i &lt;= 10; i++) {
+        printf("%d ", i);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#44</div><div class="ptitle">Sum of 10 numbers entered by user using for loop </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Loop 10 times, scanf, and add to sum.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int num, sum = 0;
+    
+    printf("Enter 10 numbers:\n");
+    for (int i = 1; i &lt;= 10; i++) {
+        printf("Number %d: ", i);
+        scanf("%d", &amp;num);
+        sum += num;
+    }
+    
+    printf("Total Sum = %d\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#45</div><div class="ptitle">Write a program to print the product of 10 numbers using for loop </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Loop 10 times, scanf, and multiply to prod.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int num;
+    long long prod = 1;
+    
+    printf("Enter 10 numbers:\n");
+    for (int i = 1; i &lt;= 10; i++) {
+        printf("Number %d: ", i);
+        scanf("%d", &amp;num);
+        prod *= num;
+    }
+    
+    printf("Total Product = %lld\n", prod);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#46</div><div class="ptitle">Write a program to print the sum of series 1 + x + x^2 + ... + x^n </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Maintain a term variable multiplied by x each iteration.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int x, n;
+    long long sum = 1, term = 1;
+    
+    printf("Enter values for x and n: ");
+    scanf("%d %d", &amp;x, &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        term *= x;     // computes x^i
+        sum += term;
+    }
+    
+    printf("Sum of the series = %lld\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#47</div><div class="ptitle">Write a program to print the sum of series -x + x^2 - x^3 + ... + x^n </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Multiply term by -x each iteration.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int x, n;
+    long long sum = 0, term = 1;
+    
+    printf("Enter values for x and n: ");
+    scanf("%d %d", &amp;x, &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        term *= -x;    // Alternate signs and compute power
+        sum += term;
+    }
+    
+    printf("Sum of the alternating series = %lld\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#48</div><div class="ptitle">Write a program to print the sum of series 1 + x/1! + x^2/2! + x^3/3! + ... + x^n/n! </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>e^x series.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int x, n;
+    double sum = 1.0, term = 1.0;
+    
+    printf("Enter values for x and n: ");
+    scanf("%d %d", &amp;x, &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        term = term * x / i;  // Compute next term dynamically
+        sum += term;
+    }
+    
+    printf("Sum of the e^x series = %.4lf\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#49</div><div class="ptitle">Write a program to print the sum of series 1 - x/1! + x^2/2! - x^3/3! + ... + x^n/n! </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Alternating sign e^x series.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int x, n;
+    double sum = 1.0, term = 1.0;
+    
+    printf("Enter values for x and n: ");
+    scanf("%d %d", &amp;x, &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        term = term * (-x) / i;  // Compute next term dynamically with alternating sign
+        sum += term;
+    }
+    
+    printf("Sum of the alternating series = %.4lf\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#50</div><div class="ptitle">Calculate result of series 1 + (1+2) + (1+2+3) + ... + (1+2+...+n) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Triangular numbers sum.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, inner_sum = 0, total_sum = 0;
+    
+    printf("Enter the value of n: ");
+    scanf("%d", &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        inner_sum += i;          // Sum up to current i (e.g., 1+2+3)
+        total_sum += inner_sum;  // Add to the grand total
+    }
+    
+    printf("Sum of the series = %d\n", total_sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#51</div><div class="ptitle">Write a program to print the sum of series 1 + 11 + 111 + 1111 + ... </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>term = term * 10 + 1.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n;
+    long long term = 0, sum = 0;
+    
+    printf("Enter the number of terms: ");
+    scanf("%d", &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        term = term * 10 + 1;  // Generates 1, 11, 111, etc.
+        sum += term;
+    }
+    
+    printf("Sum of the series = %lld\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#52</div><div class="ptitle">Write a program to check whether a number is prime number or not </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Loop up to n/2 or sqrt(n) and check divisibility.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, isPrime = 1;
+    
+    printf("Enter a positive integer: ");
+    scanf("%d", &amp;n);
+    
+    if (n &lt;= 1) {
+        isPrime = 0;
+    } else {
+        for (int i = 2; i &lt;= n / 2; i++) {
+            if (n % i == 0) {
+                isPrime = 0;
+                break;
+            }
+        }
+    }
+    
+    if (isPrime) {
+        printf("%d is a Prime Number\n", n);
+    } else {
+        printf("%d is not a Prime Number\n", n);
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#53</div><div class="ptitle">Write a program to print the total numbers of odd and even numbers in range and add them separately </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Use modulo 2 in a loop to increment respective counters.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int start, end, evenCount = 0, oddCount = 0, evenSum = 0, oddSum = 0;
+    
+    printf("Enter start and end of range: ");
+    scanf("%d %d", &amp;start, &amp;end);
+    
+    for (int i = start; i &lt;= end; i++) {
+        if (i % 2 == 0) {
+            evenCount++;
+            evenSum += i;
+        } else {
+            oddCount++;
+            oddSum += i;
+        }
+    }
+    
+    printf("Even Numbers: Total = %d, Sum = %d\n", evenCount, evenSum);
+    printf("Odd Numbers: Total = %d, Sum = %d\n", oddCount, oddSum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#54</div><div class="ptitle">Write a program to calculate if a number is armstrong or not within a range </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>153 = 1^3 + 5^3 + 3^3</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    int start, end, temp, rem, sum;
+    
+    printf("Enter start and end of range: ");
+    scanf("%d %d", &amp;start, &amp;end);
+    
+    printf("Armstrong numbers between %d and %d are:\n", start, end);
+    for (int i = start; i &lt;= end; i++) {
+        temp = i;
+        sum = 0;
+        
+        while (temp &gt; 0) {
+            rem = temp % 10;
+            sum += rem * rem * rem; // Assuming standard 3-digit Armstrong for simplicity
+            temp /= 10;
+        }
+        
+        if (sum == i) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#55</div><div class="ptitle">Write a program to find out the fibonacci series within a range </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>1, 1, 2, 3, 5, 8, 13, 21,...</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int start, end;
+    int a = 0, b = 1, next = 0;
+    
+    printf("Enter start and end of range: ");
+    scanf("%d %d", &amp;start, &amp;end);
+    
+    printf("Fibonacci numbers between %d and %d:\n", start, end);
+    
+    while (next &lt;= end) {
+        if (next &gt;= start) {
+            printf("%d ", next);
+        }
+        a = b;
+        b = next;
+        next = a + b;
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#56</div><div class="ptitle">Write a program to find out the non fibonacci nos within a range </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Generate fibonacci numbers and print the gaps between them.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int start, end;
+    int a = 0, b = 1, c = 0;
+    
+    printf("Enter start and end of range: ");
+    scanf("%d %d", &amp;start, &amp;end);
+    
+    printf("Non-Fibonacci numbers between %d and %d:\n", start, end);
+    
+    for (int i = start; i &lt;= end; i++) {
+        // Advance fibonacci until it meets or exceeds current number i
+        while (c &lt; i) {
+            a = b;
+            b = c;
+            c = a + b;
+        }
+        
+        // If current number i is not equal to fibonacci number c, it's non-fibonacci
+        if (c != i) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#57</div><div class="ptitle">Write a program to find out if a number is palindrome or not </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>585, 13431</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, reversed = 0, remainder, original;
+    
+    printf("Enter an integer: ");
+    scanf("%d", &amp;n);
+    
+    original = n;
+    
+    while (n != 0) {
+        remainder = n % 10;
+        reversed = reversed * 10 + remainder;
+        n /= 10;
+    }
+    
+    if (original == reversed) {
+        printf("%d is a Palindrome.\n", original);
+    } else {
+        printf("%d is not a Palindrome.\n", original);
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#58</div><div class="ptitle">Write a program to reverse a number (for loop) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Extract digits using % 10.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, reversed = 0;
+    
+    printf("Enter an integer: ");
+    scanf("%d", &amp;n);
+    
+    for (int temp = n; temp != 0; temp /= 10) {
+        reversed = reversed * 10 + (temp % 10);
+    }
+    
+    printf("Reversed Number = %d\n", reversed);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#59</div><div class="ptitle">Write a program to find out if a number is Krishnamurty Number or not </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>145 = 1! + 4! + 5!</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, temp, rem, sum = 0, fact;
+    
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+    
+    temp = n;
+    while (temp &gt; 0) {
+        rem = temp % 10;
+        fact = 1;
+        // Calculate factorial of the digit
+        for (int i = 1; i &lt;= rem; i++) {
+            fact *= i;
+        }
+        sum += fact;
+        temp /= 10;
+    }
+    
+    if (sum == n) {
+        printf("%d is a Krishnamurthy Number\n", n);
+    } else {
+        printf("%d is not a Krishnamurthy Number\n", n);
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#60</div><div class="ptitle">Write a program to find out the binary to decimal and vice versa </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Use base 2 multiplication and modulo operations.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    int choice;
+    long long n;
+    
+    printf("1. Binary to Decimal\n2. Decimal to Binary\nEnter choice: ");
+    scanf("%d", &amp;choice);
+    
+    printf("Enter the number: ");
+    scanf("%lld", &amp;n);
+    
+    if (choice == 1) {
+        int dec = 0, i = 0, rem;
+        while (n != 0) {
+            rem = n % 10;
+            n /= 10;
+            dec += rem * pow(2, i);
+            ++i;
+        }
+        printf("Decimal equivalent = %d\n", dec);
+    } 
+    else if (choice == 2) {
+        long long bin = 0;
+        int rem, i = 1;
+        while (n != 0) {
+            rem = n % 2;
+            n /= 2;
+            bin += rem * i;
+            i *= 10;
+        }
+        printf("Binary equivalent = %lld\n", bin);
+    } else {
+        printf("Invalid choice!\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#61</div><div class="ptitle">Write a program to calculate the GCD of two numbers </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Euclidean algorithm.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, temp;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+    
+    printf("GCD of %d and %d is ", a, b);
+    
+    // Euclidean algorithm
+    while (b != 0) {
+        temp = b;
+        b = a % b;
+        a = temp;
+    }
+    
+    printf("%d\n", a);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#62</div><div class="ptitle">Write a program to print the sum of series 1 + 1/2 + 1/3 + ... + 1/n </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Harmonic series sum.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n;
+    float sum = 0.0;
+    
+    printf("Enter the value of n: ");
+    scanf("%d", &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        sum += 1.0 / i;
+    }
+    
+    printf("Sum of the harmonic series = %f\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#63</div><div class="ptitle">Write a program to print the sum of series 1 + 2^2 + 3^3 + ... + n^n </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Requires pow() function from math.h.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    int n;
+    long long sum = 0;
+    
+    printf("Enter the value of n: ");
+    scanf("%d", &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        sum += pow(i, i);
+    }
+    
+    printf("Sum of the series = %lld\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#64</div><div class="ptitle">Write a program to print the sum of series 1/2 + 2/3 + 3/4 + ... + (n-1)/n </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Fractional series addition.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n;
+    float sum = 0.0;
+    
+    printf("Enter the value of n: ");
+    scanf("%d", &amp;n);
+    
+    for (int i = 1; i &lt; n; i++) {
+        sum += (float)i / (i + 1);
+    }
+    
+    printf("Sum of the series = %f\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#65</div><div class="ptitle">Write a program to print the sum of series 1 + 2^2/2 + 3^3/3 + ... + n^n/n </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Simplify to 1 + 2 + 3^2 + ... + n^(n-1).</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    int n;
+    double sum = 0.0;
+    
+    printf("Enter the value of n: ");
+    scanf("%d", &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        sum += pow(i, i) / i; // Equivalent to pow(i, i-1)
+    }
+    
+    printf("Sum of the series = %.2lf\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#66</div><div class="ptitle">Write a program to print the sum of series x - x^3/3! + x^5/5! - x^7/7! + ... </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>sin(x) Maclaurin series approximation.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int x, n;
+    double sum, term;
+    
+    printf("Enter value of x and n: ");
+    scanf("%d %d", &amp;x, &amp;n);
+    
+    term = x;
+    sum = x;
+    
+    for (int i = 1; i &lt; n; i++) {
+        term = term * -1 * x * x / ((2 * i) * (2 * i + 1));
+        sum += term;
+    }
+    
+    printf("Sum of the sin(x) series = %.4lf\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#67</div><div class="ptitle">Write a program to repeatedly divide a number by 2 and print the quotient </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Use a while loop until n == 0.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n;
+    
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+    
+    while (n &gt; 0) {
+        n = n / 2;
+        printf("Quotient = %d\n", n);
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+
+  <details class="problem"><summary><div class="pnum">#68</div><div class="ptitle">Pattern (where the row is given by the user) pattern1.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>1
+2 3
+4 5 6
+7 8 9 10</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows, num = 1;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = 1; i &lt;= rows; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            printf("%d ", num);
+            num++;
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#69</div><div class="ptitle">Pattern (where the row is given by the user) pattern1.png </div><div class="pdate"></div><div class="chevron">▼</div>
+  </summary><div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>1
+2 3
+4 5 6
+7 8 9 10</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows, i = 1, num = 1;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    while (i &lt;= rows) {
+        int j = 1;
+        while (j &lt;= i) {
+            printf("%d ", num);
+            num++;
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#70</div><div class="ptitle">Pattern (where the row is given by the user) pattern2.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>1
+22
+333
+4444
+55555</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = 1; i &lt;= rows; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            printf("%d", i);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#71</div><div class="ptitle">Pattern (where the row is given by the user) pattern3.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>1
+222
+33333
+4444444
+555555555</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = 1; i &lt;= rows; i++) {
+        // Prints (2*i - 1) times for each row
+        for (int j = 1; j &lt;= (2 * i - 1); j++) {
+            printf("%d", i);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#72</div><div class="ptitle">Pattern (where the row is given by the user) pattern4.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>55555
+4444
+333
+22
+1</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = rows; i &gt;= 1; i--) {
+        for (int j = 1; j &lt;= i; j++) {
+            printf("%d", i);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#73</div><div class="ptitle">Pattern (where the row is given by the user) pattern5.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>*
+***
+*****
+*******</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = 1; i &lt;= rows; i++) {
+        for (int j = 1; j &lt;= (2 * i - 1); j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#74</div><div class="ptitle">Pattern (where the row is given by the user) pattern6.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>1
+01
+101
+0101
+10101
+010101</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = 1; i &lt;= rows; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            // Alternates 1 and 0 based on position indices
+            if ((i + j) % 2 == 0) {
+                printf("1");
+            } else {
+                printf("0");
+            }
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#75</div><div class="ptitle">Pattern (where the row is given by the user) pattern7.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>A
+BB
+CCC
+DDDD
+EEEE</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = 1; i &lt;= rows; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            printf("%c", 'A' + (i - 1));
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#76</div><div class="ptitle">Pattern (where the row is given by the user) pattern8.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>5
+54
+543
+5432
+54321</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = rows; i &gt;= 1; i--) {
+        for (int j = rows; j &gt;= i; j--) {
+            printf("%d", j);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#77</div><div class="ptitle">Pattern (where the row is given by the user) pattern9.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>    1
+   22
+  333
+ 4444
+55555 (Right-Aligned Variation)</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = 1; i &lt;= rows; i++) {
+        for (int space = 1; space &lt;= rows - i; space++) {
+            printf(" ");
+        }
+        for (int j = 1; j &lt;= i; j++) {
+            printf("%d", i);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#78</div><div class="ptitle">Pattern (where the row is given by the user) pattern10.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>55555
+ 4444
+  333
+   22
+    1 (Right-Aligned Inverted Variation)</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = rows; i &gt;= 1; i--) {
+        for (int space = 1; space &lt;= rows - i; space++) {
+            printf(" ");
+        }
+        for (int j = 1; j &lt;= i; j++) {
+            printf("%d", i);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#79</div><div class="ptitle">Pattern (where the row is given by the user) pattern11.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>5
+454
+34543
+2345432
+123454321</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = rows; i &gt;= 1; i--) {
+        // Print ascending part
+        for (int j = i; j &lt;= rows; j++) {
+            printf("%d", j);
+        }
+        // Print descending part
+        for (int j = rows - 1; j &gt;= i; j--) {
+            printf("%d", j);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#80</div><div class="ptitle">Pattern (where the row is given by the user) pattern12.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>5
+4 5 4
+3 4 5 4 3
+2 3 4 5 4 3 2
+1 2 3 4 5 4 3 2 1 (Spaced version of Pattern 11)</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = rows; i &gt;= 1; i--) {
+        for (int j = i; j &lt;= rows; j++) {
+            printf("%d ", j);
+        }
+        for (int j = rows - 1; j &gt;= i; j--) {
+            printf("%d ", j);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#81</div><div class="ptitle">Pattern (where the row is given by the user) pattern13.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>(1,1)(1,2)(1,3)...(1,n)
+(2,1)(2,2)(2,3)...(2,n)
+(n,1)(n,2)(n,3)...(n,n)</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n;
+    
+    printf("Enter the value of n: ");
+    scanf("%d", &amp;n);
+    
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= n; j++) {
+            printf("(%d,%d)", i, j);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#82</div><div class="ptitle">Pattern (where the row is given by the user) pattern14.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>A
+BC
+DEF
+GHIJ</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int rows;
+    char ch = 'A';
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = 1; i &lt;= rows; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            printf("%c", ch);
+            ch++; // Increment character for next position
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>
+</details>
+  <details class="problem"><summary><div class="pnum">#83</div><div class="ptitle">Pattern (where the row is given by the user) pattern15.png </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Varied nested loop structure (e.g., Generic Diamond Pattern)</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n;
+    
+    printf("Enter half the number of rows for diamond: ");
+    scanf("%d", &amp;n);
+    
+    // Upper half
+    for (int i = 1; i &lt;= n; i++) {
+        for (int space = 1; space &lt;= n - i; space++) 
+            printf(" ");
+        for (int j = 1; j &lt;= 2 * i - 1; j++) 
+            printf("*");
+        printf("\n");
+    }
+    
+    // Lower half
+    for (int i = n - 1; i &gt;= 1; i--) {
+        for (int space = 1; space &lt;= n - i; space++) 
+            printf(" ");
+        for (int j = 1; j &lt;= 2 * i - 1; j++) 
+            printf("*");
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+
+
+  <div class="unit-header">Unit 3: Functions, Pointers & Arrays (Programs 84–112)</div>
+
+  <details class="problem"><summary><div class="pnum">#84</div><div class="ptitle">GCD of two numbers </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Extract GCD calculation into a separate function.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int findGCD(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int main() {
+    int num1, num2;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;num1, &amp;num2);
+    
+    printf("GCD of %d and %d is %d\n", num1, num2, findGCD(num1, num2));
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#85</div><div class="ptitle">Max and Min of 2 numbers </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Pass two variables to a function to compute bounds.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void findMaxMin(int a, int b) {
+    if (a &gt; b) {
+        printf("Max: %d, Min: %d\n", a, b);
+    } else if (b &gt; a) {
+        printf("Max: %d, Min: %d\n", b, a);
+    } else {
+        printf("Both numbers are equal to %d\n", a);
+    }
+}
+
+int main() {
+    int x, y;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;x, &amp;y);
+    
+    findMaxMin(x, y);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#86</div><div class="ptitle">Fibonacci Series </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Pass the number of terms to the function.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void printFibonacci(int terms) {
+    int a = 0, b = 1, next;
+    
+    printf("Fibonacci Series: ");
+    for (int i = 1; i &lt;= terms; i++) {
+        printf("%d ", a);
+        next = a + b;
+        a = b;
+        b = next;
+    }
+    printf("\n");
+}
+
+int main() {
+    int n;
+    
+    printf("Enter the number of terms: ");
+    scanf("%d", &amp;n);
+    
+    printFibonacci(n);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#87</div><div class="ptitle">Perform the following activities in a given range: Count/Sum of Odd/Even numbers </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Calculate and print aggregations inside the function.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void analyzeRange(int start, int end) {
+    int evenCount = 0, oddCount = 0;
+    int evenSum = 0, oddSum = 0;
+    
+    for (int i = start; i &lt;= end; i++) {
+        if (i % 2 == 0) {
+            evenCount++;
+            evenSum += i;
+        } else {
+            oddCount++;
+            oddSum += i;
+        }
+    }
+    
+    printf("Even Numbers: Count = %d, Sum = %d\n", evenCount, evenSum);
+    printf("Odd Numbers: Count = %d, Sum = %d\n", oddCount, oddSum);
+}
+
+int main() {
+    int start, end;
+    
+    printf("Enter start and end of range: ");
+    scanf("%d %d", &amp;start, &amp;end);
+    
+    analyzeRange(start, end);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#88</div><div class="ptitle">Factorial of a number </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Function returns the factorial value to main.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+unsigned long long calculateFactorial(int n) {
+    unsigned long long fact = 1;
+    for (int i = 1; i &lt;= n; i++) {
+        fact *= i;
+    }
+    return fact;
+}
+
+int main() {
+    int num;
+    
+    printf("Enter a positive integer: ");
+    scanf("%d", &amp;num);
+    
+    if (num &lt; 0) {
+        printf("Factorial of a negative number doesn't exist.\n");
+    } else {
+        printf("Factorial of %d = %llu\n", num, calculateFactorial(num));
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#89</div><div class="ptitle">Prove whether a number is Adam Number or Not </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>A number is adam number if its squared then reversed then again we find it's square root and again reverse the result number and see if it is equal to the original number... EXAMPLE: 12</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+// Function to reverse a number
+int reverse(int n) {
+    int rev = 0;
+    while (n &gt; 0) {
+        rev = rev * 10 + n % 10;
+        n /= 10;
+    }
+    return rev;
+}
+
+// Function to check Adam number
+// Alternatively: Square of num == Reverse of the square of the reverse of num
+int isAdam(int n) {
+    int sq = n * n;
+    int rev = reverse(n);
+    int revSq = rev * rev;
+    
+    if (sq == reverse(revSq))
+        return 1;
+    return 0;
+}
+
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &amp;num);
+    
+    if (isAdam(num)) {
+        printf("%d is an Adam Number.\n", num);
+    } else {
+        printf("%d is not an Adam Number.\n", num);
+    }
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#90</div><div class="ptitle">Print Pascal's Triangle (USE FUNCTION) [where n is entered by user] </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Function to compute nCr and print elements in triangle shape.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int factorial(int n) {
+    int fact = 1;
+    for (int i = 1; i &lt;= n; i++)
+        fact *= i;
+    return fact;
+}
+
+int nCr(int n, int r) {
+    return factorial(n) / (factorial(r) * factorial(n - r));
+}
+
+int main() {
+    int rows;
+    printf("Enter number of rows: ");
+    scanf("%d", &amp;rows);
+    
+    for (int i = 0; i &lt; rows; i++) {
+        for (int space = 0; space &lt; rows - i - 1; space++) {
+            printf("  ");
+        }
+        for (int j = 0; j &lt;= i; j++) {
+            printf("%4d", nCr(i, j));
+        }
+        printf("\n");
+    }
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#91</div><div class="ptitle">Increment values and print result in main() and in function </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Pass addresses to modify values inside the function context.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void incrementValues(int *a, int *b) {
+    (*a)++;
+    (*b)++;
+    printf("Inside function: a = %d, b = %d\n", *a, *b);
+}
+
+int main() {
+    int x = 10, y = 20;
+    
+    printf("Before function call in main: x = %d, y = %d\n", x, y);
+    
+    incrementValues(&amp;x, &amp;y);
+    
+    printf("After function call in main: x = %d, y = %d\n", x, y);
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#92</div><div class="ptitle">Interchange two variables using call by value and call by reference </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+    <div class="ans-content"><div class="note-badge">USE FU<div class="ans-content">
+  <div class="note-badge">C Program</div>
+  <pre><code>Demonstrate difference in mutability.</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void swapByValue(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
+    printf("Inside swapByValue: a = %d, b = %d\n", a, b);
+}
+
+void swapByReference(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+    printf("Inside swapByReference: a = %d, b = %d\n", *a, *b);
+}
+
+int main() {
+    int x = 5, y = 10;
+    
+    printf("Original values: x = %d, y = %d\n\n", x, y);
+    
+    swapByValue(x, y);
+    printf("After swapByValue in main: x = %d, y = %d (Unchanged)\n\n", x, y);
+    
+    swapByReference(&amp;x, &amp;y);
+    printf("After swapByReference in main: x = %d, y = %d (Changed)\n", x, y);
+    
+    return 0;
+}</code></pre>
+</div>NCTION and POINTERS </div>Demonstrate difference in mutability.</div>
+  </details>
+  <details class="problem"><summary><div class="pnum">#93</div><div class="ptitle">Take a 5 digit number, reverse it, and check whether palindrome or not </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void checkPalindrome(int *num) {
+    int temp = *num;
+    int reversed = 0;
+    
+    while (temp &gt; 0) {
+        reversed = reversed * 10 + (temp % 10);
+        temp /= 10;
+    }
+    
+    printf("Reversed Number = %d\n", reversed);
+    if (*num == reversed) {
+        printf("%d is a Palindrome.\n", *num);
+    } else {
+        printf("%d is not a Palindrome.\n", *num);
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter a 5-digit number: ");
+    scanf("%d", &amp;n);
+    
+    checkPalindrome(&amp;n);
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#94</div><div class="ptitle">Update the value of a variable using call by value and call by reference </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void updateByValue(int val) {
+    val += 50;
+}
+
+void updateByReference(int *val) {
+    *val += 50;
+}
+
+int main() {
+    int num = 100;
+    
+    printf("Initial value: %d\n", num);
+    
+    updateByValue(num);
+    printf("After updateByValue: %d\n", num);
+    
+    updateByReference(&amp;num);
+    printf("After updateByReference: %d\n", num);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#95</div><div class="ptitle">Sum the elements of an array and print the sum in the main program </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void updateByValue(int val) {
+    val += 50;
+}
+
+void updateByReference(int *val) {
+    *val += 50;
+}
+
+int main() {
+    int num = 100;
+    
+    printf("Initial value: %d\n", num);
+    
+    updateByValue(num);
+    printf("After updateByValue: %d\n", num);
+    
+    updateByReference(&amp;num);
+    printf("After updateByReference: %d\n", num);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#96</div><div class="ptitle">Increment 10 elements in an array by 1 in separate function </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void incrementArray(int *arr, int size) {
+    for (int i = 0; i &lt; size; i++) {
+        *(arr + i) += 1;
+    }
+}
+
+int main() {
+    int arr[10];
+    
+    printf("Enter 10 elements:\n");
+    for (int i = 0; i &lt; 10; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    incrementArray(arr, 10);
+    
+    printf("Array after incrementing by 1:\n");
+    for (int i = 0; i &lt; 10; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#97</div><div class="ptitle">To find the max and min of 10 elements in an array </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void findMaxMin(int *arr, int size, int *max, int *min) {
+    *max = *arr;
+    *min = *arr;
+    
+    for (int i = 1; i &lt; size; i++) {
+        if (*(arr + i) &gt; *max)
+            *max = *(arr + i);
+        if (*(arr + i) &lt; *min)
+            *min = *(arr + i);
+    }
+}
+
+int main() {
+    int arr[10], max, min;
+    
+    printf("Enter 10 elements:\n");
+    for (int i = 0; i &lt; 10; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    findMaxMin(arr, 10, &amp;max, &amp;min);
+    
+    printf("Maximum Element = %d\n", max);
+    printf("Minimum Element = %d\n", min);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#98</div><div class="ptitle">Count odd and even numbers and sum them separately </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void analyzeArray(int *arr, int size) {
+    int evenCount = 0, oddCount = 0;
+    int evenSum = 0, oddSum = 0;
+    
+    for (int i = 0; i &lt; size; i++) {
+        if (*(arr + i) % 2 == 0) {
+            evenCount++;
+            evenSum += *(arr + i);
+        } else {
+            oddCount++;
+            oddSum += *(arr + i);
+        }
+    }
+    
+    printf("Even Elements: Count = %d, Sum = %d\n", evenCount, evenSum);
+    printf("Odd Elements: Count = %d, Sum = %d\n", oddCount, oddSum);
+}
+
+int main() {
+    int n, arr[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    analyzeArray(arr, n);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#99</div><div class="ptitle">Reverse the elements in an array and print them </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void reverseArray(int *arr, int size) {
+    int temp;
+    for (int i = 0; i &lt; size / 2; i++) {
+        temp = *(arr + i);
+        *(arr + i) = *(arr + size - 1 - i);
+        *(arr + size - 1 - i) = temp;
+    }
+}
+
+int main() {
+    int n, arr[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    reverseArray(arr, n);
+    
+    printf("Reversed Array: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", *(arr + i));
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#100</div><div class="ptitle">Copy the elements of an array from one array to another </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void copyArray(int *source, int *dest, int size) {
+    for (int i = 0; i &lt; size; i++) {
+        *(dest + i) = *(source + i);
+    }
+}
+
+int main() {
+    int n, source[50], dest[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;source[i]);
+    }
+    
+    copyArray(source, dest, n);
+    
+    printf("Elements in destination array: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", *(dest + i));
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#101</div><div class="ptitle">Sort an array in ascending and descending order </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void sortAscending(int *arr, int size) {
+    int temp;
+    for (int i = 0; i &lt; size - 1; i++) {
+        for (int j = 0; j &lt; size - i - 1; j++) {
+            if (*(arr + j) &gt; *(arr + j + 1)) {
+                temp = *(arr + j);
+                *(arr + j) = *(arr + j + 1);
+                *(arr + j + 1) = temp;
+            }
+        }
+    }
+}
+
+void sortDescending(int *arr, int size) {
+    int temp;
+    for (int i = 0; i &lt; size - 1; i++) {
+        for (int j = 0; j &lt; size - i - 1; j++) {
+            if (*(arr + j) &lt; *(arr + j + 1)) {
+                temp = *(arr + j);
+                *(arr + j) = *(arr + j + 1);
+                *(arr + j + 1) = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n, arr[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) scanf("%d", &amp;arr[i]);
+    
+    sortAscending(arr, n);
+    printf("Ascending Order: ");
+    for (int i = 0; i &lt; n; i++) printf("%d ", *(arr + i));
+    
+    sortDescending(arr, n);
+    printf("\nDescending Order: ");
+    for (int i = 0; i &lt; n; i++) printf("%d ", *(arr + i));
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#102</div><div class="ptitle">Merge two sorted arrays </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void mergeSortedArrays(int *arr1, int size1, int *arr2, int size2, int *merged) {
+    int i = 0, j = 0, k = 0;
+    
+    while (i &lt; size1 &amp;&amp; j &lt; size2) {
+        if (*(arr1 + i) &lt; *(arr2 + j)) {
+            *(merged + k++) = *(arr1 + i++);
+        } else {
+            *(merged + k++) = *(arr2 + j++);
+        }
+    }
+    
+    while (i &lt; size1) *(merged + k++) = *(arr1 + i++);
+    while (j &lt; size2) *(merged + k++) = *(arr2 + j++);
+}
+
+int main() {
+    int n1, n2, arr1[50], arr2[50], merged[100];
+    
+    printf("Enter size of 1st sorted array: ");
+    scanf("%d", &amp;n1);
+    printf("Enter elements: ");
+    for (int i = 0; i &lt; n1; i++) scanf("%d", &amp;arr1[i]);
+    
+    printf("Enter size of 2nd sorted array: ");
+    scanf("%d", &amp;n2);
+    printf("Enter elements: ");
+    for (int i = 0; i &lt; n2; i++) scanf("%d", &amp;arr2[i]);
+    
+    mergeSortedArrays(arr1, n1, arr2, n2, merged);
+    
+    printf("Merged Sorted Array: ");
+    for (int i = 0; i &lt; n1 + n2; i++) {
+        printf("%d ", *(merged + i));
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#103</div><div class="ptitle">Print the unique elements in an array </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void printUnique(int *arr, int size) {
+    printf("Unique elements: ");
+    for (int i = 0; i &lt; size; i++) {
+        int count = 0;
+        for (int j = 0; j &lt; size; j++) {
+            if (*(arr + i) == *(arr + j)) {
+                count++;
+            }
+        }
+        if (count == 1) {
+            printf("%d ", *(arr + i));
+        }
+    }
+    printf("\n");
+}
+
+int main() {
+    int n, arr[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    printUnique(arr, n);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#104</div><div class="ptitle">Find out the 2nd largest element in the array </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int secondLargest(int *arr, int size) {
+    int max1 = -999999, max2 = -999999;
+    
+    for (int i = 0; i &lt; size; i++) {
+        if (*(arr + i) &gt; max1) {
+            max2 = max1;
+            max1 = *(arr + i);
+        } else if (*(arr + i) &gt; max2 &amp;&amp; *(arr + i) &lt; max1) {
+            max2 = *(arr + i);
+        }
+    }
+    return max2;
+}
+
+int main() {
+    int n, arr[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) scanf("%d", &amp;arr[i]);
+    
+    int result = secondLargest(arr, n);
+    printf("2nd Largest Element: %d\n", result);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#105</div><div class="ptitle">Find out the 2nd smallest element in the array </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int secondSmallest(int *arr, int size) {
+    int min1 = 999999, min2 = 999999;
+    
+    for (int i = 0; i &lt; size; i++) {
+        if (*(arr + i) &lt; min1) {
+            min2 = min1;
+            min1 = *(arr + i);
+        } else if (*(arr + i) &lt; min2 &amp;&amp; *(arr + i) &gt; min1) {
+            min2 = *(arr + i);
+        }
+    }
+    return min2;
+}
+
+int main() {
+    int n, arr[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) scanf("%d", &amp;arr[i]);
+    
+    int result = secondSmallest(arr, n);
+    printf("2nd Smallest Element: %d\n", result);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#106</div><div class="ptitle">Add two arrays and print the 3rd array </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int secondSmallest(int *arr, int size) {
+    int min1 = 999999, min2 = 999999;
+    
+    for (int i = 0; i &lt; size; i++) {
+        if (*(arr + i) &lt; min1) {
+            min2 = min1;
+            min1 = *(arr + i);
+        } else if (*(arr + i) &lt; min2 &amp;&amp; *(arr + i) &gt; min1) {
+            min2 = *(arr + i);
+        }
+    }
+    return min2;
+}
+
+int main() {
+    int n, arr[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) scanf("%d", &amp;arr[i]);
+    
+    int result = secondSmallest(arr, n);
+    printf("2nd Smallest Element: %d\n", result);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#107</div><div class="ptitle">Print values and address of two variables </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int secondSmallest(int *arr, int size) {
+    int min1 = 999999, min2 = 999999;
+    
+    for (int i = 0; i &lt; size; i++) {
+        if (*(arr + i) &lt; min1) {
+            min2 = min1;
+            min1 = *(arr + i);
+        } else if (*(arr + i) &lt; min2 &amp;&amp; *(arr + i) &gt; min1) {
+            min2 = *(arr + i);
+        }
+    }
+    return min2;
+}
+
+int main() {
+    int n, arr[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) scanf("%d", &amp;arr[i]);
+    
+    int result = secondSmallest(arr, n);
+    printf("2nd Smallest Element: %d\n", result);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#108</div><div class="ptitle">Swapping without a 3rd variable </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE POINTERS</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void swapPointers(int *p1, int *p2) {
+    *p1 = *p1 + *p2;
+    *p2 = *p1 - *p2;
+    *p1 = *p1 - *p2;
+}
+
+int main() {
+    int x, y;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;x, &amp;y);
+    
+    printf("Before Swapping: x = %d, y = %d\n", x, y);
+    
+    swapPointers(&amp;x, &amp;y);
+    
+    printf("After Swapping: x = %d, y = %d\n", x, y);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#109</div><div class="ptitle">Fahrenheit to celcius </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE POINTERS</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void convertToCelsius(float *f, float *c) {
+    *c = (*f - 32) * 5.0 / 9.0;
+}
+
+int main() {
+    float fahrenheit, celsius;
+    
+    printf("Enter temperature in Fahrenheit: ");
+    scanf("%f", &amp;fahrenheit);
+    
+    convertToCelsius(&amp;fahrenheit, &amp;celsius);
+    
+    printf("Temperature in Celsius: %.2f\n", celsius);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#110</div><div class="ptitle">Factorial of a number </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">POINTERS</div>
+  <pre><code>USE POINTERS</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void findFactorial(int *n, unsigned long long *fact) {
+    *fact = 1;
+    for (int i = 1; i &lt;= *n; i++) {
+        *fact *= i;
+    }
+}
+
+int main() {
+    int num;
+    unsigned long long result;
+    
+    printf("Enter a number: ");
+    scanf("%d", &amp;num);
+    
+    findFactorial(&amp;num, &amp;result);
+    
+    printf("Factorial of %d = %llu\n", num, result);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#111</div><div class="ptitle">Count the numbers of duplicate numbers in an array </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">ARRAY</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int countDuplicates(int *arr, int size) {
+    int count = 0;
+    for (int i = 0; i &lt; size; i++) {
+        for (int j = i + 1; j &lt; size; j++) {
+            if (*(arr + i) == *(arr + j)) {
+                count++;
+                break; // Prevent double counting the same duplicate element pair
+            }
+        }
+    }
+    return count;
+}
+
+int main() {
+    int n, arr[50];
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i &lt; n; i++) scanf("%d", &amp;arr[i]);
+    
+    int duplicates = countDuplicates(arr, n);
+    
+    printf("Total duplicate elements = %d\n", duplicates);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#112</div><div class="ptitle">Take two arrays, merge them, sort the resultant array and eliminate duplicate elements in another array </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">ARRAY</div>
+  <pre><code>USE FUNCTION and POINTERS and ARRAY</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void processArrays(int *a, int n1, int *b, int n2, int *res, int *n3) {
+    int total = n1 + n2, temp;
+    
+    // Merge
+    for (int i = 0; i &lt; n1; i++) *(res + i) = *(a + i);
+    for (int i = 0; i &lt; n2; i++) *(res + n1 + i) = *(b + i);
+    
+    // Sort
+    for (int i = 0; i &lt; total - 1; i++) {
+        for (int j = 0; j &lt; total - i - 1; j++) {
+            if (*(res + j) &gt; *(res + j + 1)) {
+                temp = *(res + j);
+                *(res + j) = *(res + j + 1);
+                *(res + j + 1) = temp;
+            }
+        }
+    }
+    
+    // Eliminate Duplicates in place
+    int k = 0;
+    for (int i = 0; i &lt; total; i++) {
+        if (i == 0 || *(res + i) != *(res + i - 1)) {
+            *(res + k++) = *(res + i);
+        }
+    }
+    *n3 = k; // Update final size
+}
+
+int main() {
+    int n1, n2, n3, arr1[50], arr2[50], result[100];
+    
+    printf("Enter size and elements of 1st array: ");
+    scanf("%d", &amp;n1);
+    for (int i = 0; i &lt; n1; i++) scanf("%d", &amp;arr1[i]);
+    
+    printf("Enter size and elements of 2nd array: ");
+    scanf("%d", &amp;n2);
+    for (int i = 0; i &lt; n2; i++) scanf("%d", &amp;arr2[i]);
+    
+    processArrays(arr1, n1, arr2, n2, result, &amp;n3);
+    
+    printf("Merged, Sorted, and Unique Array: ");
+    for (int i = 0; i &lt; n3; i++) printf("%d ", result[i]);
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+
+
+  <div class="unit-header">Unit 4: Strings, 2D Arrays & Sorting Algorithms (Programs 113–143)</div>
+
+  <details class="problem"><summary><div class="pnum">#113</div><div class="ptitle">input two matrixes and add them </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">2D Array</div>
+  <pre><code>2D Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int r, c, mat1[10][10], mat2[10][10], sum[10][10];
+    
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &amp;r, &amp;c);
+    
+    printf("Enter elements of 1st matrix:\n");
+    for (int i = 0; i &lt; r; i++)
+        for (int j = 0; j &lt; c; j++)
+            scanf("%d", &amp;mat1[i][j]);
+            
+    printf("Enter elements of 2nd matrix:\n");
+    for (int i = 0; i &lt; r; i++)
+        for (int j = 0; j &lt; c; j++)
+            scanf("%d", &amp;mat2[i][j]);
+            
+    printf("Sum of matrices:\n");
+    for (int i = 0; i &lt; r; i++) {
+        for (int j = 0; j &lt; c; j++) {
+            sum[i][j] = mat1[i][j] + mat2[i][j];
+            printf("%d ", sum[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#114</div><div class="ptitle">input two matrixes and subtract them </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">2D Array</div>
+  <pre><code>2D Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int r, c, mat1[10][10], mat2[10][10], sum[10][10];
+    
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &amp;r, &amp;c);
+    
+    printf("Enter elements of 1st matrix:\n");
+    for (int i = 0; i &lt; r; i++)
+        for (int j = 0; j &lt; c; j++)
+            scanf("%d", &amp;mat1[i][j]);
+            
+    printf("Enter elements of 2nd matrix:\n");
+    for (int i = 0; i &lt; r; i++)
+        for (int j = 0; j &lt; c; j++)
+            scanf("%d", &amp;mat2[i][j]);
+            
+    printf("Sum of matrices:\n");
+    for (int i = 0; i &lt; r; i++) {
+        for (int j = 0; j &lt; c; j++) {
+            sum[i][j] = mat1[i][j] + mat2[i][j];
+            printf("%d ", sum[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#115</div><div class="ptitle">input two matrixes and multiply them </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">2D Array</div>
+  <pre><code>2D Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int r1, c1, r2, c2, mat1[10][10], mat2[10][10], product[10][10];
+    
+    printf("Enter rows and cols of 1st matrix: ");
+    scanf("%d %d", &amp;r1, &amp;c1);
+    
+    printf("Enter rows and cols of 2nd matrix: ");
+    scanf("%d %d", &amp;r2, &amp;c2);
+    
+    if (c1 != r2) {
+        printf("Multiplication not possible!\n");
+        return 0;
+    }
+    
+    printf("Enter elements of 1st matrix:\n");
+    for (int i = 0; i &lt; r1; i++)
+        for (int j = 0; j &lt; c1; j++)
+            scanf("%d", &amp;mat1[i][j]);
+            
+    printf("Enter elements of 2nd matrix:\n");
+    for (int i = 0; i &lt; r2; i++)
+        for (int j = 0; j &lt; c2; j++)
+            scanf("%d", &amp;mat2[i][j]);
+            
+    printf("Product of matrices:\n");
+    for (int i = 0; i &lt; r1; i++) {
+        for (int j = 0; j &lt; c2; j++) {
+            product[i][j] = 0;
+            for (int k = 0; k &lt; c1; k++) {
+                product[i][j] += mat1[i][k] * mat2[k][j];
+            }
+            printf("%d ", product[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#116</div><div class="ptitle">input two matrixes and transpose them </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">2D Array</div>
+  <pre><code>2D Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int r, c, mat[10][10], transpose[10][10];
+    
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &amp;r, &amp;c);
+    
+    printf("Enter elements of matrix:\n");
+    for (int i = 0; i &lt; r; i++) {
+        for (int j = 0; j &lt; c; j++) {
+            scanf("%d", &amp;mat[i][j]);
+        }
+    }
+            
+    // Finding transpose
+    for (int i = 0; i &lt; r; i++) {
+        for (int j = 0; j &lt; c; j++) {
+            transpose[j][i] = mat[i][j];
+        }
+    }
+            
+    printf("Transpose of the matrix:\n");
+    for (int i = 0; i &lt; c; i++) {
+        for (int j = 0; j &lt; r; j++) {
+            printf("%d ", transpose[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#117</div><div class="ptitle">input two matrixes and add the column and rows values separately </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">2D Array</div>
+  <pre><code>2D Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int r, c, mat[10][10];
+    
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &amp;r, &amp;c);
+    
+    printf("Enter elements of matrix:\n");
+    for (int i = 0; i &lt; r; i++) {
+        for (int j = 0; j &lt; c; j++) {
+            scanf("%d", &amp;mat[i][j]);
+        }
+    }
+    
+    // Row Sum
+    for (int i = 0; i &lt; r; i++) {
+        int rSum = 0;
+        for (int j = 0; j &lt; c; j++) {
+            rSum += mat[i][j];
+        }
+        printf("Sum of Row %d = %d\n", i + 1, rSum);
+    }
+    
+    // Column Sum
+    for (int j = 0; j &lt; c; j++) {
+        int cSum = 0;
+        for (int i = 0; i &lt; r; i++) {
+            cSum += mat[i][j];
+        }
+        printf("Sum of Column %d = %d\n", j + 1, cSum);
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#118</div><div class="ptitle">input two matrixes and find the sum of the diagonal elements </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">2D Array</div>
+  <pre><code>2D Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, mat[10][10], sum = 0;
+    
+    printf("Enter size of square matrix (n x n): ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter elements of matrix:\n");
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            scanf("%d", &amp;mat[i][j]);
+        }
+    }
+            
+    // Calculating the sum of principal diagonal elements
+    for (int i = 0; i &lt; n; i++) {
+        sum += mat[i][i];
+    }
+            
+    printf("Sum of the diagonal elements = %d\n", sum);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#119</div><div class="ptitle">find out the length of a string(pointer) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[100];
+    char *ptr = str;
+    int length = 0;
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", str);
+    
+    while (*ptr != '\0') {
+        length++;
+        ptr++;
+    }
+    
+    printf("Length of the string = %d\n", length);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#120</div><div class="ptitle">find out the length of a string(without pointer) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[100];
+    int length = 0;
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", str);
+    
+    while (str[length] != '\0') {
+        length++;
+    }
+    
+    printf("Length of the string = %d\n", length);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#121</div><div class="ptitle">copy an array of string </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char source[100], destination[100];
+    int i = 0;
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", source);
+    
+    while (source[i] != '\0') {
+        destination[i] = source[i];
+        i++;
+    }
+    destination[i] = '\0'; // Null-terminate the destination string
+    
+    printf("Copied String: %s\n", destination);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#122</div><div class="ptitle">copy the string in reverse order(pointer) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[100], rev[100];
+    char *sptr = str, *rptr = rev;
+    int len = 0;
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", str);
+    
+    // Find length using pointer
+    while (*sptr != '\0') {
+        len++;
+        sptr++;
+    }
+    
+    sptr--; // Point to the last character before null
+    
+    // Copy in reverse
+    while (len &gt; 0) {
+        *rptr = *sptr;
+        rptr++;
+        sptr--;
+        len--;
+    }
+    *rptr = '\0'; // Null-terminate the reversed string
+    
+    printf("Reversed String: %s\n", rev);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#123</div><div class="ptitle">to check Palindrome or not </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[100];
+    int len = 0, isPalindrome = 1;
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    while (str[len] != '\0') {
+        len++;
+    }
+    
+    for (int i = 0; i &lt; len / 2; i++) {
+        if (str[i] != str[len - 1 - i]) {
+            isPalindrome = 0;
+            break;
+        }
+    }
+    
+    if (isPalindrome) {
+        printf("The string is a Palindrome.\n");
+    } else {
+        printf("The string is not a Palindrome.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#124</div><div class="ptitle">Input of a string using %s,%c,gets(ch) and print them separately </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char c;
+    char str1[50], str2[50];
+    
+    printf("Enter a single character (using %%c): ");
+    scanf("%c", &amp;c);
+    
+    printf("Enter a word (using %%s): ");
+    scanf("%s", str1);
+    
+    // Clear input buffer before using gets
+    while(getchar() != '\n'); 
+    
+    printf("Enter a full sentence (using gets): ");
+    gets(str2); // Note: gets() is deprecated in modern C but often used in syllabus
+    
+    printf("\n--- Outputs ---\n");
+    printf("Character: %c\n", c);
+    printf("Word: %s\n", str1);
+    printf("Sentence: %s\n", str2);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#125</div><div class="ptitle">no of words and characters in a string </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[200];
+    int chars = 0, words = 1;
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", str);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        // Count non-space characters
+        if (str[i] != ' ') {
+            chars++;
+        }
+        // Count words based on transitions from space to character
+        if (str[i] == ' ' &amp;&amp; str[i + 1] != ' ' &amp;&amp; str[i + 1] != '\0') {
+            words++;
+        }
+    }
+    
+    if (chars == 0) words = 0; // Handle empty or space-only input
+    
+    printf("Total characters (excluding spaces) = %d\n", chars);
+    printf("Total words = %d\n", words);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#126</div><div class="ptitle">no of vowels consonants digits and whitespace </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[200];
+    int v = 0, c = 0, d = 0, s = 0;
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", str);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+            ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+            v++;
+        } 
+        else if ((ch &gt;= 'a' &amp;&amp; ch &lt;= 'z') || (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z')) {
+            c++;
+        } 
+        else if (ch &gt;= '0' &amp;&amp; ch &lt;= '9') {
+            d++;
+        } 
+        else if (ch == ' ' || ch == '\t') {
+            s++;
+        }
+    }
+    
+    printf("Vowels: %d\nConsonants: %d\nDigits: %d\nWhite spaces: %d\n", v, c, d, s);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#127</div><div class="ptitle">ASCII value of a character </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char c;
+    
+    printf("Enter a character: ");
+    scanf("%c", &amp;c);
+    
+    printf("ASCII value of '%c' is %d\n", c, c);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#128</div><div class="ptitle">concanate two string without strcat() </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str1[200], str2[100];
+    int i = 0, j = 0;
+    
+    printf("Enter first string: ");
+    scanf("%s", str1);
+    
+    printf("Enter second string: ");
+    scanf("%s", str2);
+    
+    // Find the end of the first string
+    while (str1[i] != '\0') {
+        i++;
+    }
+    
+    // Append the second string
+    while (str2[j] != '\0') {
+        str1[i] = str2[j];
+        i++;
+        j++;
+    }
+    str1[i] = '\0'; // Null terminate the final string
+    
+    printf("Concatenated String: %s\n", str1);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#129</div><div class="ptitle">reverse (without strrev()) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+  <div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[100], temp;
+    int len = 0;
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", str);
+    
+    // Calculate length
+    while (str[len] != '\0') {
+        len++;
+    }
+    
+    // Swap characters from both ends
+    for (int i = 0; i &lt; len / 2; i++) {
+        temp = str[i];
+        str[i] = str[len - i - 1];
+        str[len - i - 1] = temp;
+    }
+    
+    printf("Reversed String: %s\n", str);
+    
+    return 0;
+}</code></pre>
+</div></details>
+  <details class="problem"><summary><div class="pnum">#130</div><div class="ptitle">to copy a string </div><div class="pdate"></div><div class="chevron">▼</div></summary><div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char source[100], target[100];
+    int i = 0;
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", source);
+    
+    // Copying character by character
+    while (source[i] != '\0') {
+        target[i] = source[i];
+        i++;
+    }
+    target[i] = '\0'; // Append null character
+    
+    printf("Original String: %s\n", source);
+    printf("Copied String: %s\n", target);
+    
+    return 0;
+}</code></pre>
+</div></div></details>
+  <details class="problem"><summary><div class="pnum">#131</div><div class="ptitle">remove characters in a string without alphabets </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+  <div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[150];
+    int j = 0;
+    
+    printf("Enter a string with special characters/digits: ");
+    scanf("%[^\n]", str);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        // Keep only if it is an alphabet
+        if ((str[i] &gt;= 'a' &amp;&amp; str[i] &lt;= 'z') || (str[i] &gt;= 'A' &amp;&amp; str[i] &lt;= 'Z')) {
+            str[j] = str[i];
+            j++;
+        }
+    }
+    str[j] = '\0'; // Terminate the updated string
+    
+    printf("String after removing non-alphabets: %s\n", str);
+    
+    return 0;
+}</code></pre>
+</div>
+  </details>
+  <details class="problem"><summary><div class="pnum">#132</div><div class="ptitle">sort string in dictionary order </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[100], temp;
+    int len;
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    len = strlen(str);
+    
+    // Bubble sort characters
+    for (int i = 0; i &lt; len - 1; i++) {
+        for (int j = i + 1; j &lt; len; j++) {
+            if (str[i] &gt; str[j]) {
+                temp = str[i];
+                str[i] = str[j];
+                str[j] = temp;
+            }
+        }
+    }
+    
+    printf("String in dictionary order: %s\n", str);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#133</div><div class="ptitle">compare two string(strcmp()) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str1[100], str2[100];
+    
+    printf("Enter first string: ");
+    scanf("%s", str1);
+    
+    printf("Enter second string: ");
+    scanf("%s", str2);
+    
+    int result = strcmp(str1, str2);
+    
+    if (result == 0) {
+        printf("Strings are identical.\n");
+    } else if (result &gt; 0) {
+        printf("First string is greater than second.\n");
+    } else {
+        printf("First string is smaller than second.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#134</div><div class="ptitle">compare two string(without strcmp()) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str1[100], str2[100];
+    int i = 0, flag = 0;
+    
+    printf("Enter first string: ");
+    scanf("%s", str1);
+    
+    printf("Enter second string: ");
+    scanf("%s", str2);
+    
+    while (str1[i] != '\0' || str2[i] != '\0') {
+        if (str1[i] != str2[i]) {
+            flag = 1;
+            break;
+        }
+        i++;
+    }
+    
+    if (flag == 0) {
+        printf("Strings are identical.\n");
+    } else {
+        printf("Strings are not identical.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#135</div><div class="ptitle">substring inside a given string </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[100], sub[50];
+    int flag = 0, j;
+    
+    printf("Enter the main string: ");
+    scanf("%s", str);
+    
+    printf("Enter the substring: ");
+    scanf("%s", sub);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        j = 0;
+        // Check window match
+        while (sub[j] != '\0' &amp;&amp; str[i + j] == sub[j]) {
+            j++;
+        }
+        // If end of substring is reached
+        if (sub[j] == '\0') {
+            flag = 1;
+            printf("Substring found starting at index %d\n", i);
+            break;
+        }
+    }
+    
+    if (flag == 0) {
+        printf("Substring not found.\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#136</div><div class="ptitle">convert string to opposite case </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char str[100];
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", str);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        // Convert lower to upper
+        if (str[i] &gt;= 'a' &amp;&amp; str[i] &lt;= 'z') {
+            str[i] = str[i] - 32;
+        } 
+        // Convert upper to lower
+        else if (str[i] &gt;= 'A' &amp;&amp; str[i] &lt;= 'Z') {
+            str[i] = str[i] + 32;
+        }
+    }
+    
+    printf("Toggled Case String: %s\n", str);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#137</div><div class="ptitle">passing string to function </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">String</div>
+  <pre><code>String</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void displayString(char *str) {
+    printf("String passed to function: %s\n", str);
+}
+
+int main() {
+    char myStr[100];
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", myStr);
+    
+    // Passing array name which acts as base address pointer
+    displayString(myStr);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#138</div><div class="ptitle">Bubble sort </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">SORTING</div>
+  <pre><code>Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int arr[50], n, temp;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    // Bubble Sort Logic
+    for (int i = 0; i &lt; n - 1; i++) {
+        for (int j = 0; j &lt; n - i - 1; j++) {
+            if (arr[j] &gt; arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    
+    printf("Sorted array in ascending order: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#139</div><div class="ptitle">insertion sort </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">SORTING</div>
+  <pre><code>Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int arr[50], n, key, j;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    // Insertion Sort Logic
+    for (int i = 1; i &lt; n; i++) {
+        key = arr[i];
+        j = i - 1;
+        
+        while (j &gt;= 0 &amp;&amp; arr[j] &gt; key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+    
+    printf("Sorted array in ascending order: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#140</div><div class="ptitle">selection sort </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">SORTING</div>
+  <pre><code>Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int arr[50], n, min_idx, temp;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    // Selection Sort Logic
+    for (int i = 0; i &lt; n - 1; i++) {
+        min_idx = i;
+        for (int j = i + 1; j &lt; n; j++) {
+            if (arr[j] &lt; arr[min_idx]) {
+                min_idx = j;
+            }
+        }
+        // Swap
+        if (min_idx != i) {
+            temp = arr[i];
+            arr[i] = arr[min_idx];
+            arr[min_idx] = temp;
+        }
+    }
+    
+    printf("Sorted array in ascending order: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#141</div><div class="ptitle">quick sort </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">SORTING</div>
+  <pre><code>Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+    
+    for (int j = low; j &lt;= high - 1; j++) {
+        if (arr[j] &lt; pivot) {
+            i++;
+            swap(&amp;arr[i], &amp;arr[j]);
+        }
+    }
+    swap(&amp;arr[i + 1], &amp;arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low &lt; high) {
+        int pi = partition(arr, low, high);
+        
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    int arr[50], n;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    quickSort(arr, 0, n - 1);
+    
+    printf("Sorted array: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#142</div><div class="ptitle">merge sort </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">SORTING</div>
+  <pre><code>Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void merge(int arr[], int l, int m, int r) {
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    
+    int L[n1], R[n2];
+    
+    for (i = 0; i &lt; n1; i++) L[i] = arr[l + i];
+    for (j = 0; j &lt; n2; j++) R[j] = arr[m + 1 + j];
+    
+    i = 0; j = 0; k = l;
+    while (i &lt; n1 &amp;&amp; j &lt; n2) {
+        if (L[i] &lt;= R[j]) {
+            arr[k++] = L[i++];
+        } else {
+            arr[k++] = R[j++];
+        }
+    }
+    
+    while (i &lt; n1) arr[k++] = L[i++];
+    while (j &lt; n2) arr[k++] = R[j++];
+}
+
+void mergeSort(int arr[], int l, int r) {
+    if (l &lt; r) {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+int main() {
+    int arr[50], n;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    mergeSort(arr, 0, n - 1);
+    
+    printf("Sorted array: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#143</div><div class="ptitle">shell sort </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">SORTING</div>
+  <pre><code>Array</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+void shellSort(int arr[], int n) {
+    for (int gap = n / 2; gap &gt; 0; gap /= 2) {
+        for (int i = gap; i &lt; n; i += 1) {
+            int temp = arr[i];
+            int j;            
+            for (j = i; j &gt;= gap &amp;&amp; arr[j - gap] &gt; temp; j -= gap) {
+                arr[j] = arr[j - gap];
+            }
+            arr[j] = temp;
+        }
+    }
+}
+
+int main() {
+    int arr[50], n;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &amp;n);
+    
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;arr[i]);
+    }
+    
+    shellSort(arr, n);
+    
+    printf("Sorted array: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+
+
+  <div class="unit-header">Unit 5: Recursion (Programs 144–150)</div>
+
+  <details class="problem"><summary><div class="pnum">#144</div><div class="ptitle">factorial of a number </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">RECURSION</div>
+  <pre><code>Recursion</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+unsigned long long fact(int n) {
+    if (n == 0 || n == 1)
+        return 1;
+    else
+        return n * fact(n - 1);
+}
+
+int main() {
+    int num;
+    
+    printf("Enter a positive integer: ");
+    scanf("%d", &amp;num);
+    
+    if (num &lt; 0)
+        printf("Factorial of negative number doesn't exist.\n");
+    else
+        printf("Factorial of %d = %llu\n", num, fact(num));
+        
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#145</div><div class="ptitle">decrease number(indirect recursion) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">RECURSION</div>
+  <pre><code>Recursion</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+// Function prototypes needed for indirect recursion
+void functionA(int n);
+void functionB(int n);
+
+void functionA(int n) {
+    if (n &gt; 0) {
+        printf("%d ", n);
+        functionB(n - 1);
+    }
+}
+
+void functionB(int n) {
+    if (n &gt; 1) {
+        printf("%d ", n);
+        functionA(n / 2);
+    }
+}
+
+int main() {
+    int n;
+    
+    printf("Enter a number to start decreasing pattern: ");
+    scanf("%d", &amp;n);
+    
+    printf("Generated Pattern: ");
+    functionA(n);
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#146</div><div class="ptitle">sum of n natural numbers </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">RECURSION</div>
+  <pre><code>Recursion</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int sumOfNatural(int n) {
+    if (n == 0)
+        return 0;
+    else
+        return n + sumOfNatural(n - 1);
+}
+
+int main() {
+    int num;
+    
+    printf("Enter a positive integer: ");
+    scanf("%d", &amp;num);
+    
+    printf("Sum of first %d natural numbers = %d\n", num, sumOfNatural(num));
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#147</div><div class="ptitle">reverse of a number </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">RECURSION</div>
+  <pre><code>Recursion</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int reverseNumber(int n) {
+    static int rev = 0;
+    
+    if (n == 0)
+        return rev;
+        
+    rev = rev * 10 + (n % 10);
+    return reverseNumber(n / 10);
+}
+
+int main() {
+    int num, reversed;
+    
+    printf("Enter an integer: ");
+    scanf("%d", &amp;num);
+    
+    // Store sign if negative and make positive for reversal
+    int isNegative = num &lt; 0 ? 1 : 0;
+    if (isNegative) num = -num;
+    
+    reversed = reverseNumber(num);
+    
+    if (isNegative) reversed = -reversed;
+    
+    printf("Reversed Number = %d\n", reversed);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#148</div><div class="ptitle">ged of two numbers </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">RECURSION</div>
+  <pre><code>Recursion</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int gcd(int a, int b) {
+    if (b == 0)
+        return a;
+    return gcd(b, a % b);
+}
+
+int main() {
+    int num1, num2;
+    
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;num1, &amp;num2);
+    
+    printf("GCD of %d and %d is %d\n", num1, num2, gcd(num1, num2));
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#149</div><div class="ptitle">reverse of a string using strrev </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">RECURSION</div>
+  <pre><code>Recursion</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+void reverseString(char str[], int start, int end) {
+    char temp;
+    if (start &gt;= end) {
+        return; // Base case: middle of the string is reached
+    }
+    
+    // Swap characters
+    temp = str[start];
+    str[start] = str[end];
+    str[end] = temp;
+    
+    // Recursive call moving towards the middle
+    reverseString(str, start + 1, end - 1);
+}
+
+int main() {
+    char str[100];
+    
+    printf("Enter a string: ");
+    scanf("%[^\n]", str);
+    
+    int len = strlen(str);
+    
+    reverseString(str, 0, len - 1);
+    
+    printf("Reversed string: %s\n", str);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#150</div><div class="ptitle">Fibonacci Series </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">RECURSION</div>
+  <pre><code>Recursion</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+int fibonacci(int n) {
+    if (n == 0) 
+        return 0;
+    else if (n == 1) 
+        return 1;
+    else 
+        return (fibonacci(n - 1) + fibonacci(n - 2));
+}
+
+int main() {
+    int n;
+    
+    printf("Enter the number of terms: ");
+    scanf("%d", &amp;n);
+    
+    printf("Fibonacci Series: ");
+    for (int i = 0; i &lt; n; i++) {
+        printf("%d ", fibonacci(i));
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+
+    <div class="unit-header">Unit 6:  Structures (Programs 151–152)</div>
+
+  <details class="problem"><summary><div class="pnum">#151</div><div class="ptitle">student database(roll,name, address) </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">STRUCTURES</div>
+  <pre><code>Structure</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+struct Student {
+    int roll;
+    char name[50];
+    char address[100];
+};
+
+int main() {
+    struct Student s;
+    
+    printf("Enter roll number: ");
+    scanf("%d", &amp;s.roll);
+    
+    // Clear input buffer
+    while(getchar() != '\n');
+    
+    printf("Enter name: ");
+    scanf("%[^\n]", s.name);
+    
+    while(getchar() != '\n');
+    
+    printf("Enter address: ");
+    scanf("%[^\n]", s.address);
+    
+    printf("\n--- Student Details ---\n");
+    printf("Roll Number: %d\n", s.roll);
+    printf("Name: %s\n", s.name);
+    printf("Address: %s\n", s.address);
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+  <details class="problem"><summary><div class="pnum">#152</div><div class="ptitle">Scan roll no, and marks of each sub per student. Print avg of marks and the grade of each student. Print the grade in totality and also according to each subject </div><div class="pdate"></div><div class="chevron">▼</div></summary>
+<div class="ans-content">
+  <div class="note-badge">STRUCTURES</div>
+  <pre><code>Structure</code></pre><br>
+  <pre><code>#include &lt;stdio.h&gt;
+
+struct Student {
+    int roll;
+    float marks[5];
+    float avg;
+    char totalGrade;
+    char subGrades[5];
+};
+
+// Function to calculate grade as per standard MAKAUT slab
+char calculateGrade(float marks) {
+    if (marks &gt;= 90) return 'O';
+    else if (marks &gt;= 80) return 'E';
+    else if (marks &gt;= 70) return 'A';
+    else if (marks &gt;= 60) return 'B';
+    else if (marks &gt;= 50) return 'C';
+    else if (marks &gt;= 40) return 'D';
+    else return 'F';
+}
+
+int main() {
+    int n;
+    
+    printf("Enter number of students: ");
+    scanf("%d", &amp;n);
+    
+    struct Student s[n]; 
+    
+    for (int i = 0; i &lt; n; i++) {
+        printf("\nEnter details for student %d\n", i + 1);
+        printf("Enter Roll Number: ");
+        scanf("%d", &amp;s[i].roll);
+        
+        float sum = 0;
+        printf("Enter marks for 5 subjects (out of 100):\n");
+        for (int j = 0; j &lt; 5; j++) {
+            printf("Subject %d: ", j + 1);
+            scanf("%f", &amp;s[i].marks[j]);
+            s[i].subGrades[j] = calculateGrade(s[i].marks[j]);
+            sum += s[i].marks[j];
+        }
+        
+        s[i].avg = sum / 5.0;
+        s[i].totalGrade = calculateGrade(s[i].avg);
+    }
+    
+    printf("\n============= RESULT SHEET =============\n");
+    for (int i = 0; i &lt; n; i++) {
+        printf("Roll No: %d | Avg Marks: %.2f | Overall Grade: %c\n", 
+               s[i].roll, s[i].avg, s[i].totalGrade);
+        printf("Subject Grades: ");
+        for (int j = 0; j &lt; 5; j++) {
+            printf("Sub%d:%c ", j + 1, s[i].subGrades[j]);
+        }
+        printf("\n----------------------------------------\n");
+    }
+    
+    return 0;
+}</code></pre>
+</div>  </details>
+
+</main>
+
+<script>
+  // Close other details elements when one is opened
+  const details = document.querySelectorAll('details.problem');
+  details.forEach((targetDetail) => {
+    targetDetail.addEventListener('click', () => {
+      details.forEach((detail) => {
+        if (detail !== targetDetail) {
+          detail.removeAttribute('open');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
