@@ -191,6 +191,20 @@
   @media (max-width: 600px) {
     .pdate { display: none; }
   }
+
+  @keyframes disco {
+    0% { color: rgb(255, 153, 0); }
+    20% { color: rgb(60, 255, 0); }
+    40% { color: rgb(0, 128, 58); }
+    60% { color: yellow; }
+    80% { color: purple; }
+    100% { color: orange; }
+}
+
+.animate-disco {
+    /* 0.05s is the minimum practical speed for browser rendering */
+    animation: disco 1s infinite linear; 
+}
 </style>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
@@ -201,7 +215,9 @@
   <div class="badge">Future Minds · MAKAUT's Biggest Student Community</div>
   <h1 >C Programming: Complete 152 Programs List</h1>
   <p class="!text-lg !text-gray-300 !mt-4 !font-medium">Semester II · ES-CS291 </p>
-  <a href="https://whatsapp.com/channel/0029VaS4HVs2phHPbvb7OM1Z" class="text-center px-6 py-3 text-blue-300 ">JOIN THE COMMUNITY OF 32K+ STUDENTS :  👉 CLICK HERE 👈  </a>
+  <a href="https://whatsapp.com/channel/0029VaS4HVs2phHPbvb7OM1Z" class=" text-center px-6 py-3 text-blue-300 ">JOIN THE COMMUNITY OF 32K+ STUDENTS : </a>
+    <a href="https://whatsapp.com/channel/0029VaS4HVs2phHPbvb7OM1Z" class="animate-disco text-center px-6 py-3 text-blue-300 ">   👉 CLICK HERE 👈  </a>
+
 </header>
 
 <main>
