@@ -178,6 +178,15 @@
     border-radius: 4px;
     margin-bottom: 8px;
   }
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* This hides the horizontal scrollbar */
+}
+
+/* Force long text like URLs to break into new lines */
+  p, div, span {
+    word-break: break-word;
+   }
 
   @media (max-width: 600px) {
     .pdate { display: none; }
