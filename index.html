@@ -1266,18 +1266,29 @@ int main() {
 </div>  </details>
   <details class="problem"><summary><div class="pnum">#43</div><div class="ptitle">Factorial of a number using for loop </div><div class="pdate"></div><div class="chevron">▼</div></summary>
 <div class="ans-content">
-  <div class="note-badge">C Program</div>
+  <div class="note-badge">Loops</div>
   <pre><code>for(int i=1; i&lt;=10; i++) printf("%d ", i);</code></pre><br>
-  <pre><code>#include &lt;stdio.h&gt;
+<pre><code>#include &lt;stdio.h&gt;
 
 int main() {
-    printf("Numbers 1 to 10:\n");
-    
-    for (int i = 1; i &lt;= 10; i++) {
-        printf("%d ", i);
+    int n, i;
+    unsigned long long fact = 1; 
+
+    printf("Enter a positive integer: ");
+    scanf("%d", &amp;n);
+
+    // Factorial is not defined for negative numbers
+    if (n &lt; 0) {
+        printf("Error! Factorial of a negative number doesn't exist.\n");
+    } 
+    else {
+        // Multiply fact by each number up to n
+        for (i = 1; i &lt;= n; i++) {
+            fact *= i;
+        }
+        printf("Factorial of %d = %llu\n", n, fact);
     }
-    printf("\n");
-    
+
     return 0;
 }</code></pre>
 </div>  </details>
