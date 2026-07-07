@@ -1,0 +1,29 @@
+{
+  "name": "makaut-pps-ii",
+  "version": "1.0.0",
+  "description": "C Programming: Complete 152 Programs List - MAKAUT Semester II (ES-CS291)",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudra-nl/PPS.git"
+  },
+  "keywords": [
+    "c-programming",
+    "makaut",
+    "education",
+    "programming-problems"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rudra-nl/PPS/issues"
+  },
+  "homepage": "https://github.com/rudra-nl/PPS#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
